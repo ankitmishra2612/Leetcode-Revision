@@ -1,0 +1,41 @@
+
+
+
+class Solution {
+    public int minEatingSpeed(int[] piles, int h) {
+      int max=0;
+      for(int i=0;i<piles.length;i++){
+        max=Math.max(max,piles[i]);
+      }
+     
+     int i=1; // min 1 ho ga not zero 
+     int j=max;
+     int ans=0;
+
+     while(i<=j){
+        int mid= i+(j-i)/2 ;
+                    //  System.out.print(mid+"      ");
+        if(a(mid,piles,h)){
+            ans=mid;
+             j=mid-1;
+        }
+        else{
+            i=mid+1;
+        }
+     }
+
+     return ans;
+    }
+  
+  public boolean a (int mid,int []p,int h){
+     
+     long x=0;  // due to integer Overflow 
+    for(int i=0;i<p.length;i++){
+        x+=(p[i]/mid);
+        if(p[i]%mid >0 ) x+=1 ;
+    }
+    if(x<=h) return true;
+    return false;
+  }
+
+}
